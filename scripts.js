@@ -18,7 +18,7 @@ console.log("Number of buttons found:", openModal.length);
 
 openModal.forEach(button => {
     button.addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent default link action
+        event.preventDefault();
         modal.style.display = "block";
     });
 });
