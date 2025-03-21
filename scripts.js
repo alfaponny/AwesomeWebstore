@@ -19,8 +19,7 @@ console.log("Number of buttons found:", openModal.length);
 
 //actionlistener till "köp" knapparna via variabeln ovan
 openModal.forEach(button => {
-    button.addEventListener("click", function(event) {
-        event.preventDefault();
+    button.addEventListener("click", function() {
         modal.style.display = "block";
     });
 });
