@@ -66,8 +66,42 @@ document.getElementById("phoneNumber").addEventListener("input", function() {
     this.setCustomValidity(errorMessage);
 });
 
-//          address: Min 2 tecken och Max 50 tecken
-//           ii. postalCode: Exakt 5 siffror
-//           iii. city: Min 2 tecken och Max 50 tecken
+// address: Min 2 tecken och Max 50 tecken
+document.getElementById(("address")).addEventListener("input", function() {
+    let errorMessage = "";
+
+    let postalPattern = /^.{2,50}$/;
+
+    if (!postalPattern.test(this.value)) {
+        errorMessage = "Please enter a valid address"
+    }
+
+    this.setCustomValidity(errorMessage);
+});
+
+// ii. postalCode: Exakt 5 siffror
+document.getElementById(("postalCode")).addEventListener("input", function() {
+    let errorMessage = "";
+
+    let postalPattern = /^\d{5}$/;
+
+    if (!postalPattern.test(this.value)) {
+        errorMessage = "Please enter a valid postal number"
+    }
+
+    this.setCustomValidity(errorMessage);
+});
+// iii. city: Min 2 tecken och Max 50 tecken
+document.getElementById(("city")).addEventListener("input", function() {
+    let errorMessage = "";
+
+    let postalPattern = /^[a-zA-Z\s]{2,50}$/;
+
+    if (!postalPattern.test(this.value)) {
+        errorMessage = "Please enter a valid postal number"
+    }
+
+    this.setCustomValidity(errorMessage);
+});
 
 
