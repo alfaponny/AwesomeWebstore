@@ -45,6 +45,46 @@
   gap: 5px;
 }
 
+.hidden-egg {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  opacity: 0.1;
+  transition: opacity 0.5s ease-in-out;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+#egg1:hover, #egg2:hover, #egg3:hover, #egg4:hover, #egg5:hover, #egg6:hover {
+  opacity: 1;
+}
+
+#egg1 { top: 20%; left: 5vw; }
+#egg2 { top: 40%; right: 10vw; }
+#egg3 { bottom: 1%; left: 10vw; }
+#egg4 { bottom: 6%; right: 32vw; }
+#egg5 { top: 2%; right: 15vw; }
+#egg6 { top: 40%; left: 50vw; }
+
+
+@media (max-width: 768px) {
+  #egg1 { top: 15%; left: 5vw; }
+  #egg2 { top: 55%; right: 10vw; }
+  #egg3 { bottom: 10%; left: 5vw; }
+  #egg4 { bottom: 15%; right: 15vw; }
+  #egg5 { top: 30%; right: 10vw; }
+  #egg6 { top: 40%; left: 40vw; }
+}
+
+#eggCounter {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid black;
+}
+
 #orderDone {
   margin: 20px;
   border-radius:5px;
@@ -56,4 +96,4 @@
 
 
 #orderDone:hover
-   {background-color: #72d386}
+{background-color: #72d386}

@@ -104,4 +104,22 @@ document.getElementById(("city")).addEventListener("input", function() {
     this.setCustomValidity(errorMessage);
 });
 
+const eggs = document.querySelectorAll(".hidden-egg");
+const totalEggs = eggs.length;
+let foundCount = 0; // Initialize foundCount
+
+eggs.forEach(egg => {
+    egg.addEventListener("click", function() {
+        if (this.style.opacity !== "1") {
+            this.style.opacity = "1";
+            foundCount++;
+            document.getElementById("eggCounter").innerText = `Found ${foundCount}/${totalEggs} Easter Eggs!`;
+        }
+        if (foundCount === totalEggs) {
+            document.getElementById("eggCounter").innerText = 'Congratulations! You found all of the eggs! \n' +
+                'You get 15% discount with code: EASTER15';
+        }
+    });
+});
+
 
