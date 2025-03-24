@@ -176,4 +176,8 @@ eggs.forEach(egg => {
     });
 });
 
+submitOrder.addEventListener("click", buyConfirmation);
 
+function buyConfirmation(){
+    console.log("Hej!")
+}
