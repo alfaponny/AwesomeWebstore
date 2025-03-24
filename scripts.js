@@ -66,7 +66,7 @@ function displayProducts(json) {
                 </div>
             </div>
             `;
-        containerElement.innerHTML += productCard;
+        cardContainerRow.innerHTML += productCard;
 
         const openModal=document.querySelectorAll(".checkoutPress");
         //actionlistener till "köp" knapparna via variabeln ovan
