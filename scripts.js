@@ -98,7 +98,7 @@ document.getElementById(("city")).addEventListener("input", function() {
     let postalPattern = /^[a-zA-Z\s]{2,50}$/;
 
     if (!postalPattern.test(this.value)) {
-        errorMessage = "Please enter a valid postal number"
+        errorMessage = "Please enter a valid city"
     }
 
     this.setCustomValidity(errorMessage);
