@@ -8,14 +8,14 @@
 
 //variabler hämtade från index
 const modal=document.getElementById("checkout");
-const openModal=document.querySelectorAll(".checkoutPress");
 const closeModal = document.querySelector(".close");
 const submitOrder=document.getElementById("orderDone")
 
 //bara error testing på hemsidan (tryck f12 och välj console)
-console.log("Connection ESTABLISHED", modal, openModal);
-console.log("Number of buttons found:", openModal.length);
+//console.log("Connection ESTABLISHED", modal, openModal);
+//console.log("Number of buttons found:", openModal.length);
 
+//Hämtar produkter när hemsidan öppnas
 document.addEventListener("DOMContentLoaded", function () {
     fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
@@ -24,10 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+//Tar emot produkterna i json-format och skapar upp kort med produkt-egenskaper
 function displayProducts(json) {
-    const containerElement = document.querySelector('#cardContainer .row')
+    const cardContainerRow = document.querySelector('#cardContainer .row')
 
-    containerElement.innerHTML = '';
+    cardContainerRow.innerHTML = '';
 
     json.forEach(product => {
         const productCard = `
@@ -66,16 +67,17 @@ function displayProducts(json) {
             </div>
             `;
         containerElement.innerHTML += productCard;
+
+        const openModal=document.querySelectorAll(".checkoutPress");
+        //actionlistener till "köp" knapparna via variabeln ovan
+        openModal.forEach(button => {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                modal.style.display = "block";
+            });
+        });
     });
 }
-
-//actionlistener till "köp" knapparna via variabeln ovan
-openModal.forEach(button => {
-    button.addEventListener("click", function(event) {
-        event.preventDefault();
-        modal.style.display = "block";
-    });
-});
 
 //actionlistener till krysset på popup
 closeModal.addEventListener("click", function() {
