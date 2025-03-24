@@ -11,6 +11,13 @@ const modal=document.getElementById("checkout");
 const closeModal = document.querySelector(".close");
 const submitOrder=document.getElementById("orderDone")
 
+let nameOk = false;
+//let emailOk = false;
+let addressOk = false;
+let phoneNrOK = false;
+let postalCodeOk = false;
+let cityOk = false;
+
 //bara error testing på hemsidan (tryck f12 och välj console)
 //console.log("Connection ESTABLISHED", modal, openModal);
 //console.log("Number of buttons found:", openModal.length);
@@ -97,8 +104,12 @@ document.getElementById("fullName").addEventListener("input", function() {
 
     if (!this.value.includes(" ")) {
         errorMessage = "Please enter both first and last name.";
+        nameOk = false;
     } else if (this.value.length < 3 || this.value.length>50) {
         errorMessage = "Unsupported length";
+        nameOk = false;
+    }else {
+        nameOk = true;
     }
 
     this.setCustomValidity(errorMessage);
@@ -113,8 +124,12 @@ document.getElementById("phoneNumber").addEventListener("input", function() {
 
     if (!phonePattern.test(this.value)) {
         errorMessage = "Please enter a valid phone number";
+        phoneNrOK = false;
     } else if (this.value.length>50) {
         errorMessage = "Unsupported length";
+        phoneNrOK = false;
+    }else {
+        phoneNrOK = true;
     }
 
     this.setCustomValidity(errorMessage);
@@ -128,6 +143,9 @@ document.getElementById(("address")).addEventListener("input", function() {
 
     if (!postalPattern.test(this.value)) {
         errorMessage = "Please enter a valid address"
+        addressOk = false;
+    }else {
+        addressOk = true;
     }
 
     this.setCustomValidity(errorMessage);
@@ -141,6 +159,9 @@ document.getElementById(("postalCode")).addEventListener("input", function() {
 
     if (!postalPattern.test(this.value)) {
         errorMessage = "Please enter a valid postal number"
+        postalCodeOk = false;
+    }else{
+        postalCodeOk = true;
     }
 
     this.setCustomValidity(errorMessage);
@@ -153,6 +174,9 @@ document.getElementById(("city")).addEventListener("input", function() {
 
     if (!postalPattern.test(this.value)) {
         errorMessage = "Please enter a valid city"
+        cityOk = false;
+    }else{
+        cityOk = true;
     }
 
     this.setCustomValidity(errorMessage);
@@ -176,8 +200,18 @@ eggs.forEach(egg => {
     });
 });
 
-submitOrder.addEventListener("click", buyConfirmation);
+//Eventlyssnare för submit-knappen.
+submitOrder.addEventListener("click", function (){
+    //Temp alert för att se vad som inte fyllts i. Bör raderas sen.
+    const testMessage = `nameOk: ${nameOk}, addressOk: ${addressOk}, postalCodeOk: ${postalCodeOk}, cityOk: ${cityOk}, phoneNrOk: ${phoneNrOK}`;
 
-function buyConfirmation(){
-    console.log("Hej!")
-}
+    const confirmationMessage = "Your purchase has been registrated.";
+
+    //Ifsatsen ska innehålla booleam emailOK också, men hittar fan inte motsvarande eventlyssnare för fälter email så kan inte fixa nu ...:
+    // if (nameOk && addressOk && postalCodeOk && cityOk && phoneNrOK && emailOk){
+    if (nameOk && addressOk && postalCodeOk && cityOk && phoneNrOK){
+        this.setCustomValidity(confirmationMessage)
+    }else{
+        alert(testMessage)
+    }
+});
