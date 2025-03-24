@@ -8,10 +8,10 @@
 
 
 //variabler hämtade från index
-let modal=document.getElementById("checkout");
-let openModal=document.querySelectorAll(".checkoutPress");
-let closeModal = document.querySelector(".close");
-let submitOrder=document.getElementById("orderDone")
+const modal=document.getElementById("checkout");
+const openModal=document.querySelectorAll(".checkoutPress");
+const closeModal = document.querySelector(".close");
+const submitOrder=document.getElementById("orderDone")
 
 //bara error testing på hemsidan (tryck f12 och välj console)
 console.log("Connection ESTABLISHED", modal, openModal);
