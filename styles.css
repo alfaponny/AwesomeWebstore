@@ -59,6 +59,7 @@
   opacity: 1;
 }
 
+/* sätter ut äggen */
 #egg1 { top: 20%; left: 5vw; }
 #egg2 { top: 40%; right: 10vw; }
 #egg3 { bottom: 1%; left: 10vw; }

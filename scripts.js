@@ -105,8 +105,9 @@ document.getElementById(("city")).addEventListener("input", function() {
 
 const eggs = document.querySelectorAll(".hidden-egg");
 const totalEggs = eggs.length;
-let foundCount = 0; // Initialize foundCount
+let foundCount = 0;
 
+// gör så det går att klicka på äggen
 eggs.forEach(egg => {
     egg.addEventListener("click", function() {
         if (this.style.opacity !== "1") {
