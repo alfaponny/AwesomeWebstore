@@ -16,6 +16,59 @@ const submitOrder=document.getElementById("orderDone")
 console.log("Connection ESTABLISHED", modal, openModal);
 console.log("Number of buttons found:", openModal.length);
 
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('https://fakestoreapi.com/products')
+        .then(res => res.json())
+        .then(json => displayProducts(json))
+        .catch(err => console.error(err))
+});
+
+
+function displayProducts(json) {
+    const containerElement = document.querySelector('#cardContainer .row')
+
+    containerElement.innerHTML = '';
+
+    json.forEach(product => {
+        const productCard = `
+            <div class="card h-100">
+                <!-- Product image-->
+                <img
+                    class="card-img-top"
+                    src="${product.image}"
+                    alt="..."
+                />
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">${product.title}</h5>
+                        <div class="d-flex justify-content-center small text-warning mb-2">
+                            <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
+                                <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
+                                    <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
+                                        <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
+                                            <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
+
+                        </div>
+                        <!-- Product price-->
+                        ${product.price}
+                    </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a class="checkoutPress btn btn-outline-dark mt-auto"
+                        >Buy now</a
+                        >
+                    </div>
+                </div>
+            </div>
+            `;
+        containerElement.innerHTML += productCard;
+    });
+}
+
 //actionlistener till "köp" knapparna via variabeln ovan
 openModal.forEach(button => {
     button.addEventListener("click", function(event) {
