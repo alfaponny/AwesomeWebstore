@@ -6,7 +6,6 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
-
 //variabler hämtade från index
 const modal=document.getElementById("checkout");
 const openModal=document.querySelectorAll(".checkoutPress");
