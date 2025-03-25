@@ -44,14 +44,12 @@ function displayProducts(json) {
                 <div class="card-body">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="product-title">${product.title}</h5>
+                        <h5 class="product-title">${product.title}</h5> 
                         <div class="d-flex justify-content-center small text-warning mb-2">
-                            <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-                                <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-                                    <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-                                        <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-                                            <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-
+                          <div class="ratings">`
+                          + showRatingChicks(product.rating.rate) +
+                        `
+                        </div>
                         </div>
                         <!-- Product description-->
                         <div class="product-description">
@@ -83,6 +81,18 @@ function displayProducts(json) {
             });
         });
     });
+}
+
+//Genererar antal kycklingar beroende på rating. Inte exakt pga heltal, avrundar.
+function showRatingChicks(rating){
+    const ratingNum = Math.round(rating)
+    let ratingChicks = '';
+
+    for(let i = 0; i < ratingNum; i++) {
+        ratingChicks += `<img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">`;
+    }
+
+    return ratingChicks;
 }
 
 //actionlistener till krysset på popup
