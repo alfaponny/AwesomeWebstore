@@ -8,6 +8,7 @@
 
 //variabler hämtade från index
 const modal=document.getElementById("checkout");
+const openModal=document.querySelectorAll(".checkoutPress");
 const closeModal = document.querySelector(".close");
 const submitOrder=document.getElementById("orderDone")
 
@@ -22,15 +23,6 @@ let cityOk = false;
 //console.log("Connection ESTABLISHED", modal, openModal);
 //console.log("Number of buttons found:", openModal.length);
 
-//Hämtar produkter när hemsidan öppnas
-document.addEventListener("DOMContentLoaded", function () {
-    fetch('https://fakestoreapi.com/products')
-        .then(res => res.json())
-        .then(json => displayProducts(json))
-        .catch(err => console.error(err))
-});
-
-
 //Tar emot produkterna i json-format och skapar upp kort med produkt-egenskaper
 function displayProducts(json) {
     const cardContainerRow = document.querySelector('#cardContainer .row')
@@ -39,12 +31,12 @@ function displayProducts(json) {
 
     json.forEach(product => {
         const productCard = `
-            <div class="card h-100">
+            <div class="card h-100 mx-1">
                 <!-- Product image-->
                 <img
                     class="card-img-top"
                     src="${product.image}"
-                    alt="..."
+                    alt="product picture"
                 />
                 <!-- Product details-->
                 <div class="card-body p-4">
@@ -75,7 +67,6 @@ function displayProducts(json) {
             `;
         cardContainerRow.innerHTML += productCard;
 
-        const openModal=document.querySelectorAll(".checkoutPress");
         //actionlistener till "köp" knapparna via variabeln ovan
         openModal.forEach(button => {
             button.addEventListener("click", function(event) {
@@ -214,4 +205,12 @@ submitOrder.addEventListener("click", function (){
     }else{
         alert(testMessage)
     }
+});
+
+//Hämtar produkter när hemsidan öppnas
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('https://fakestoreapi.com/products')
+        .then(res => res.json())
+        .then(json => displayProducts(json))
+        .catch(err => console.error(err))
 });
