@@ -8,7 +8,7 @@
 
 //variabler hämtade från index
 const modal=document.getElementById("checkout");
-const openModal=document.querySelectorAll(".checkoutPress");
+
 const closeModal = document.querySelector(".close");
 //const submitOrder=document.getElementById("orderDone");
 const orderValidation = document.getElementById("orderValidation");
@@ -40,14 +40,12 @@ function displayProducts(json) {
                 <div class="card-body">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="product-title">${product.title}</h5>
+                        <h5 class="product-title">${product.title}</h5> 
                         <div class="d-flex justify-content-center small text-warning mb-2">
-                            <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-                                <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-                                    <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-                                        <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-                                            <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
-
+                          <div class="ratings">`
+                          + showRatingChicks(product.rating.rate) +
+                        `
+                        </div>
                         </div>
                         <!-- Product description-->
                         <div class="product-description">
@@ -70,7 +68,7 @@ function displayProducts(json) {
             </div>
             `;
         cardContainerRow.innerHTML += productCard;
-
+        const openModal=document.querySelectorAll(".checkoutPress");
         //actionlistener till "köp" knapparna via variabeln ovan
         openModal.forEach(button => {
             button.addEventListener("click", function (event) {
@@ -79,6 +77,18 @@ function displayProducts(json) {
             });
         });
     });
+}
+
+//Genererar antal kycklingar beroende på rating. Inte exakt pga heltal, avrundar.
+function showRatingChicks(rating){
+    const ratingNum = Math.round(rating)
+    let ratingChicks = '';
+
+    for(let i = 0; i < ratingNum; i++) {
+        ratingChicks += `<img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">`;
+    }
+
+    return ratingChicks;
 }
 
 //actionlistener till krysset på popup
@@ -178,15 +188,16 @@ eggs.forEach(egg => {
     });
 });
 
-//Eventlistener för submit-knappen. Visar popup i nån sekund om orden är rätt ifylld.
+//Eventlistener för submit-knappen. Visar popup i nån sekund om formuläret är rätt ifyllt.
 checkoutForm.addEventListener("submit", (e) => {
     e.preventDefault()
-
     orderValidation.style.display = "block";
-
+    orderValidation.style.opacity = "1";
     setTimeout(() => {
-        orderValidation.style.display = "none"
-    }, 2000);   //Millisekunder validation visas i innan stängs
+
+        orderValidation.style.transition = "opacity 2s ease-out"; //fade-out-tid
+        orderValidation.style.opacity = "0";
+    }, 1500);   //Millisekunder validation visas i innan fade-out börjar
     modal.style.display = "none";   //Stänger form-fönstret.
 })
 
