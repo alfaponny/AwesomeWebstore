@@ -164,7 +164,7 @@
 }
 
 header img{
-  max-width 100%; !important;
+  max-width: 100%; !important;
   height: auto !important;
   display: block !important;
   margin: 0 auto !important;
