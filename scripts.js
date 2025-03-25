@@ -31,18 +31,20 @@ function displayProducts(json) {
 
     json.forEach(product => {
         const productCard = `
-            <div class="card h-100 mx-1">
+            <div class="card">
                 <!-- Product image-->
+                <div class="card-container-img">
                 <img
                     class="card-img-top"
                     src="${product.image}"
                     alt="product picture"
                 />
+                </div>
                 <!-- Product details-->
-                <div class="card-body p-4">
+                <div class="card-body">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="fw-bolder">${product.title}</h5>
+                        <h5 class="product-title">${product.title}</h5>
                         <div class="d-flex justify-content-center small text-warning mb-2">
                             <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
                                 <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
@@ -51,12 +53,18 @@ function displayProducts(json) {
                                             <img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">
 
                         </div>
+                        <!-- Product description-->
+                        <div class="product-description">
+                        ${product.description}
+                        </div>
                         <!-- Product price-->
-                        ${product.price}
+                        <div class="price fw-bold">
+                        ${product.price}:-
+                        </div>
                     </div>
                 </div>
                 <!-- Product actions-->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="card-footer border-top-0 bg-transparent">
                     <div class="text-center">
                         <a class="checkoutPress btn btn-outline-dark mt-auto"
                         >Buy now</a
@@ -69,7 +77,7 @@ function displayProducts(json) {
 
         //actionlistener till "köp" knapparna via variabeln ovan
         openModal.forEach(button => {
-            button.addEventListener("click", function(event) {
+            button.addEventListener("click", function (event) {
                 event.preventDefault();
                 modal.style.display = "block";
             });
@@ -78,7 +86,7 @@ function displayProducts(json) {
 }
 
 //actionlistener till krysset på popup
-closeModal.addEventListener("click", function() {
+closeModal.addEventListener("click", function () {
     modal.style.display = "none";
 });
 
