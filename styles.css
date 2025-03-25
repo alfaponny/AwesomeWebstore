@@ -155,3 +155,17 @@
   -webkit-box-orient: vertical;
   margin-bottom: 5px;
 }
+
+.header{
+  display: flex !important;
+  justify-content: center !important;
+  height: 300px;
+
+}
+
+header img{
+  max-width 100%; !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
