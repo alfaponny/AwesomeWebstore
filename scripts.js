@@ -161,7 +161,7 @@ document.getElementById(("postalCode")).addEventListener("input", function() {
 document.getElementById(("city")).addEventListener("input", function() {
     let errorMessage = "";
 
-    let postalPattern = /^([A-Z]|Å|Ä|Ö)([a-z]|å|ä|ö)+$/;
+    let postalPattern = /^[a-zA-ZåäöÅÄÖ\s]{2,50}$/;
 
     if (!postalPattern.test(this.value)) {
         errorMessage = "Please enter a valid city"
