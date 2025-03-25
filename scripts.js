@@ -182,9 +182,12 @@ eggs.forEach(egg => {
 //Eventlistener för submit-knappen. Visar popup i nån sekund om orden är rätt ifylld.
 checkoutForm.addEventListener("submit", (e) => {
     e.preventDefault()
+
     orderValidation.style.display = "block";
+
     setTimeout(() => {
         orderValidation.style.display = "none"
-    }, 1500);
+    }, 2000);   //Millisekunder validation visas i innan stängs
+    modal.style.display = "none";   //Stänger form-fönstret.
 })
 
