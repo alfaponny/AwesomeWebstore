@@ -19,14 +19,22 @@ const checkoutForm = document.getElementById("checkoutForm");
 //console.log("Connection ESTABLISHED", modal, openModal);
 //console.log("Number of buttons found:", openModal.length);
 
+//Lyssnare till parent till buy now-knapp:
+document.querySelector("#cardContainer .row").addEventListener("click", function(e) {
+    if (e.target.classList.contains("checkoutPress")){
+        e.preventDefault()
+        modal.style.display="block";
+    }
+})
+
 //Tar emot produkterna i json-format och skapar upp kort med produkt-egenskaper
 function displayProducts(json) {
-    const cardContainerRow = document.querySelector('#cardContainer .row')
+    const cardContainerRow = document.querySelector('#cardContainer .row');
 
     cardContainerRow.innerHTML = '';
 
-    json.forEach(product => {
-        const productCard = `
+    //Istället för en for each gör vi en map där alla produkter skapas upp samtidigt.
+    const productCardsHTML = json.map(product =>`
             <div class="card">
                 <!-- Product image-->
                 <div class="card-container-img">
@@ -60,23 +68,13 @@ function displayProducts(json) {
                 <!-- Product actions-->
                 <div class="card-footer border-top-0 bg-transparent">
                     <div class="text-center">
-                        <a class="checkoutPress btn btn-outline-dark mt-auto"
-                        >Buy now</a
-                        >
+                        <a class="checkoutPress btn btn-outline-dark mt-auto">Buy now</a>
                     </div>
                 </div>
             </div>
-            `;
-        cardContainerRow.innerHTML += productCard;
-        const openModal=document.querySelectorAll(".checkoutPress");
-        //actionlistener till "köp" knapparna via variabeln ovan
-        openModal.forEach(button => {
-            button.addEventListener("click", function (event) {
-                event.preventDefault();
-                modal.style.display = "block";
-            });
-        });
-    });
+            `).join('');
+        //Korten läggs till samtidigt
+        cardContainerRow.innerHTML = productCardsHTML;
 }
 
 //Genererar antal kycklingar beroende på rating. Inte exakt pga heltal, avrundar.
@@ -193,12 +191,19 @@ checkoutForm.addEventListener("submit", (e) => {
     e.preventDefault()
     orderValidation.style.display = "block";
     orderValidation.style.opacity = "1";
+
+    //completely stäng
+    modal.style.display = "none"; //Stänger form-fönstret.
+
     setTimeout(() => {
 
-        orderValidation.style.transition = "opacity 2s ease-out"; //fade-out-tid
+        orderValidation.style.transition = "opacity 1s ease-out"; //fade-out-tid
         orderValidation.style.opacity = "0";
+
+        setTimeout(() =>{
+            orderValidation.style.display = "none";
+        }, 1000)
     }, 1500);   //Millisekunder validation visas i innan fade-out börjar
-    modal.style.display = "none";   //Stänger form-fönstret.
 })
 
 
