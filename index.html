@@ -421,7 +421,7 @@
     <!--&times är en symbol för krysset -->
     <span class="close">&times;</span>
     <h3>Checkout</h3>
-    <form class="checkoutForm">
+    <form id= "checkoutForm" class="checkoutForm">
 
       <label for="fullName">Full name</label>
       <input type="text" id="fullName" required placeholder="Ash Ketchum">
@@ -447,8 +447,13 @@
     </form>
 
   </div>
-
-
+</div>
+<!-- Validation popup för korrekt ifylld form -->
+<div id="orderValidation" class="modal">
+    <div class="modal-content">
+      <h2>All good!</h2>
+      <p>Your purchase has been registered.</p>
+    </div>
 </div>
 
 <p id="eggCounter">Found 0/6 Easter Eggs!</p>
