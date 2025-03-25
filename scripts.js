@@ -8,7 +8,7 @@
 
 //variabler hämtade från index
 const modal=document.getElementById("checkout");
-const openModal=document.querySelectorAll(".checkoutPress");
+
 const closeModal = document.querySelector(".close");
 //const submitOrder=document.getElementById("orderDone");
 const orderValidation = document.getElementById("orderValidation");
@@ -68,7 +68,7 @@ function displayProducts(json) {
             </div>
             `;
         cardContainerRow.innerHTML += productCard;
-
+        const openModal=document.querySelectorAll(".checkoutPress");
         //actionlistener till "köp" knapparna via variabeln ovan
         openModal.forEach(button => {
             button.addEventListener("click", function (event) {
@@ -188,15 +188,16 @@ eggs.forEach(egg => {
     });
 });
 
-//Eventlistener för submit-knappen. Visar popup i nån sekund om orden är rätt ifylld.
+//Eventlistener för submit-knappen. Visar popup i nån sekund om formuläret är rätt ifyllt.
 checkoutForm.addEventListener("submit", (e) => {
     e.preventDefault()
-
     orderValidation.style.display = "block";
-
+    orderValidation.style.opacity = "1";
     setTimeout(() => {
-        orderValidation.style.display = "none"
-    }, 2000);   //Millisekunder validation visas i innan stängs
+
+        orderValidation.style.transition = "opacity 2s ease-out"; //fade-out-tid
+        orderValidation.style.opacity = "0";
+    }, 1500);   //Millisekunder validation visas i innan fade-out börjar
     modal.style.display = "none";   //Stänger form-fönstret.
 })
 
