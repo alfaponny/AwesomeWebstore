@@ -1,8 +1,8 @@
 /*!
-* Start Bootstrap - Shop Homepage v5.0.6 (https://startbootstrap.com/template/shop-homepage)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
-*/
+ * Start Bootstrap - Shop Homepage v5.0.6 (https://startbootstrap.com/template/shop-homepage)
+ * Copyright 2013-2023 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
@@ -27,46 +27,46 @@ function displayProducts(json) {
 
     json.forEach(product => {
         const productCard = `
-            <div class="card">
-                <!-- Product image-->
-                <div class="card-container-img">
-                <img
-                    class="card-img-top"
-                    src="${product.image}"
-                    alt="product picture"
-                />
-                </div>
-                <!-- Product details-->
-                <div class="card-body">
-                    <div class="text-center">
-                        <!-- Product name-->
-                        <h5 class="product-title">${product.title}</h5> 
-                        <div class="d-flex justify-content-center small text-warning mb-2">
-                          <div class="ratings">`
-                          + showRatingChicks(product.rating.rate) +
-                        `
-                        </div>
-                        </div>
-                        <!-- Product description-->
-                        <div class="product-description">
-                        ${product.description}
-                        </div>
-                        <!-- Product price-->
-                        <div class="price fw-bold">
-                        ${product.price}:-
-                        </div>
-                    </div>
-                </div>
-                <!-- Product actions-->
-                <div class="card-footer border-top-0 bg-transparent">
-                    <div class="text-center">
-                        <a class="checkoutPress btn btn-outline-dark mt-auto"
-                        >Buy now</a
-                        >
-                    </div>
-                </div>
-            </div>
-            `;
+             <div class="card">
+                 <!-- Product image-->
+                 <div class="card-container-img">
+                 <img
+                     class="card-img-top"
+                     src="${product.image}"
+                     alt="product picture"
+                 />
+                 </div>
+                 <!-- Product details-->
+                 <div class="card-body">
+                     <div class="text-center">
+                         <!-- Product name-->
+                         <h5 class="product-title">${product.title}</h5> 
+                         <div class="d-flex justify-content-center small text-warning mb-2">
+                           <div class="ratings">`
+            + showRatingChicks(product.rating.rate) +
+            `
+                         </div>
+                         </div>
+                         <!-- Product description-->
+                         <div class="product-description">
+                         ${product.description}
+                         </div>
+                         <!-- Product price-->
+                         <div class="price fw-bold">
+                         ${product.price}:-
+                         </div>
+                     </div>
+                 </div>
+                 <!-- Product actions-->
+                 <div class="card-footer border-top-0 bg-transparent">
+                     <div class="text-center">
+                         <a class="checkoutPress btn btn-outline-dark mt-auto"
+                         >Buy now</a
+                         >
+                     </div>
+                 </div>
+             </div>
+             `;
         cardContainerRow.innerHTML += productCard;
         const openModal=document.querySelectorAll(".checkoutPress");
         //actionlistener till "köp" knapparna via variabeln ovan
@@ -193,14 +193,20 @@ checkoutForm.addEventListener("submit", (e) => {
     e.preventDefault()
     orderValidation.style.display = "block";
     orderValidation.style.opacity = "1";
+
+    //completely stäng
+    modal.style.display = "none"; //Stänger form-fönstret.
+
     setTimeout(() => {
 
-        orderValidation.style.transition = "opacity 2s ease-out"; //fade-out-tid
+        orderValidation.style.transition = "opacity 1s ease-out"; //fade-out-tid
         orderValidation.style.opacity = "0";
-    }, 1500);   //Millisekunder validation visas i innan fade-out börjar
-    modal.style.display = "none";   //Stänger form-fönstret.
-})
 
+        setTimeout(() =>{
+            orderValidation.style.display = "none";
+        }, 1000)
+    }, 1500);   //Millisekunder validation visas i innan fade-out börjar
+})
 
 //Hämtar produkter när hemsidan öppnas
 document.addEventListener("DOMContentLoaded", function () {
