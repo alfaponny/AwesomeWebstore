@@ -113,14 +113,14 @@ closeModal.addEventListener("click", function () {
     modal.style.display = "none";
 });
 
-//actionlistener till hela sidan, om click != popup, displaya den inte
+//actionlistener till hela sidan, om click != popup, visa den inte
 window.addEventListener("click", function(event) {
     if (event.target === modal) {
         modal.style.display = "none";
     }
 });
 
-//actionlistener till fullname
+//actionlistener till fullName
 document.getElementById("fullName").addEventListener("input", function() {
     let errorMessage = "";
 
@@ -133,7 +133,7 @@ document.getElementById("fullName").addEventListener("input", function() {
     this.setCustomValidity(errorMessage);
 });
 
-//actionlistener till phonenumber
+//actionlistener till phoneNumber
 document.getElementById("phoneNumber").addEventListener("input", function() {
     let errorMessage = "";
 
@@ -174,7 +174,7 @@ document.getElementById(("postalCode")).addEventListener("input", function() {
 
     this.setCustomValidity(errorMessage);
 });
-// iii. city: Min 2 tecken och Max 50 tecken
+// iii. City: Min 2 tecken och Max 50 tecken
 document.getElementById(("city")).addEventListener("input", function() {
     let errorMessage = "";
 
