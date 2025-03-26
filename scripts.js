@@ -82,6 +82,7 @@ function displayProducts(json) {
                 const productPriceText = productCard.querySelector(".price").innerText;
                 const productPrice = parseFloat(productPriceText.replace('€', '').trim());
 
+                // Gör så produkten syns i checkout formuläret
                 document.getElementById("checkoutProduct").innerHTML = `
                 <div class="selected-product" data-original-price="${productPrice}">
                     <img src ="${productImage}" alt="Selected Product" width="100">
@@ -232,7 +233,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(err => console.error(err))
 });
 
+// Gör så rabattkoden funkar
 document.getElementById("applyDiscount").addEventListener("click", function() {
+    // hämtar rabattkoden man skriver in och priset på produkten
     const discountCode = document.getElementById("discountCode").value.trim();
     const price = document.querySelector("#checkoutProduct .original-price");
     const newPriceElement = document.querySelector("#checkoutProduct .new-price");
@@ -240,10 +243,12 @@ document.getElementById("applyDiscount").addEventListener("click", function() {
 
     const originalPrice = parseFloat(priceText);
 
+    // Giltiga rabattkoder
     const discountCodes = {
         EASTER15: 15
     };
 
+    // Kollar om rabattkoden är giltig och räknar i så fall ut det nya priset
     if (discountCodes[discountCode]) {
         let discount = discountCodes[discountCode]
         let newPrice = originalPrice - (originalPrice * (discount / 100));
