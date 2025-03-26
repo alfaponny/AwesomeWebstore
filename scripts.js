@@ -248,6 +248,8 @@ document.getElementById("applyDiscount").addEventListener("click", function() {
         EASTER15: 15
     };
 
+    const discountError = document.getElementById("discountError");
+    discountError.style.display = "none";
     // Kollar om rabattkoden är giltig och räknar i så fall ut det nya priset
     if (discountCodes[discountCode]) {
         let discount = discountCodes[discountCode]
@@ -257,6 +259,7 @@ document.getElementById("applyDiscount").addEventListener("click", function() {
         newPriceElement.textContent = newPrice.toFixed(2) + '€';
 
     } else {
-        alert("Invalid discount code");
+        discountError.textContent = "Invalid discount code";
+        discountError.style.display = "block";
     }
 });
