@@ -27,7 +27,8 @@ function displayProducts(json) {
 
     json.forEach(product => {
         const productCard = `
-             <div class="card">
+             <div class="card"
+             data-product-id="${product.id}">
                  <!-- Product image-->
                  <div class="card-container-img">
                  <img
@@ -53,7 +54,7 @@ function displayProducts(json) {
                          </div>
                          <!-- Product price-->
                          <div class="price fw-bold">
-                         ${product.price}:-
+                         ${product.price}€
                          </div>
                      </div>
                  </div>
@@ -74,6 +75,21 @@ function displayProducts(json) {
             button.addEventListener("click", function (event) {
                 event.preventDefault();
                 modal.style.display = "block";
+
+                const productCard = this.closest(".card");
+                const productTitle = productCard.querySelector(".product-title").innerText;
+                const productImage = productCard.querySelector(".card-img-top").src;
+                const productPriceText = productCard.querySelector(".price").innerText;
+                const productPrice = parseFloat(productPriceText.replace('€', '').trim());
+
+                document.getElementById("checkoutProduct").innerHTML = `
+                <div class="selected-product" data-original-price="${productPrice}">
+                    <img src ="${productImage}" alt="Selected Product" width="100">
+                    <h5>${productTitle}</h5>
+                    <p>Price: <span class="original-price">${productPrice}</span>€</p>
+                    <p class="new-price"></p>
+                </div>
+                `;
             });
         });
     });
@@ -214,4 +230,28 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(res => res.json())
         .then(json => displayProducts(json))
         .catch(err => console.error(err))
+});
+
+document.getElementById("applyDiscount").addEventListener("click", function() {
+    const discountCode = document.getElementById("discountCode").value.trim();
+    const price = document.querySelector("#checkoutProduct .original-price");
+    const newPriceElement = document.querySelector("#checkoutProduct .new-price");
+    const priceText = price.textContent;
+
+    const originalPrice = parseFloat(priceText);
+
+    const discountCodes = {
+        EASTER15: 15
+    };
+
+    if (discountCodes[discountCode]) {
+        let discount = discountCodes[discountCode]
+        let newPrice = originalPrice - (originalPrice * (discount / 100));
+
+        price.style.textDecoration = 'line-through';
+        newPriceElement.textContent = newPrice.toFixed(2) + '€';
+
+    } else {
+        alert("Invalid discount code");
+    }
 });

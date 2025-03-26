@@ -426,6 +426,8 @@
     <h3>Checkout</h3>
     <form id= "checkoutForm" class="checkoutForm">
 
+      <div id="checkoutProduct"></div>
+
       <label for="fullName">Full name</label>
       <input type="text" id="fullName" required placeholder="Ash Ketchum">
 
@@ -444,6 +446,12 @@
 
       <label for="phoneNumber">Phone number</label>
       <input type="tel" id="phoneNumber" required placeholder="019-1337">
+
+      <div class="discountCode">
+        <label for="discountCode">Discount Code</label>
+        <input type="text" id="discountCode" placeholder="Enter your discount code">
+        <button type="button" id="applyDiscount">Apply</button>
+      </div>
 
       <button id ="orderDone" type="submit">Submit Order</button>
 

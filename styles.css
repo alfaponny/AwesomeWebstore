@@ -30,6 +30,12 @@
   position: relative;
 }
 
+.modal-content h3 {
+  font-size: 45px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 .close {
   position: absolute;
   top: 10px;
@@ -168,4 +174,22 @@ header img{
   height: auto !important;
   display: block !important;
   margin: 0 auto !important;
+}
+
+.selected-product {
+  text-align: center;
+}
+
+.selected-product p {
+  margin: 0;
+  padding: 0;
+}
+
+.discountCode {
+  padding: 10px;
+}
+
+.new-price {
+  color: red;
+  margin-bottom: 5px;
 }
