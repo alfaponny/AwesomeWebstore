@@ -18,17 +18,46 @@ const checkoutForm = document.getElementById("checkoutForm");
 //bara error testing på hemsidan (tryck f12 och välj console)
 //console.log("Connection ESTABLISHED", modal, openModal);
 //console.log("Number of buttons found:", openModal.length);
+//Lyssnare till parent till buy now-knapp:
+document.querySelector("#cardContainer .row").addEventListener("click", function(e) {
+    if (e.target.classList.contains("checkoutPress")){
+        e.preventDefault()
+        modal.style.display="block";
+
+
+//Kan detta vara här?
+        const productCard = this.closest(".card");
+        const productTitle = productCard.querySelector(".product-title").innerText;
+        const productImage = productCard.querySelector(".card-img-top").src;
+        const productPriceText = productCard.querySelector(".price").innerText;
+        const productPrice = parseFloat(productPriceText.replace('€', '').trim());
+
+        // Gör så produkten syns i checkout formuläret
+        document.getElementById("checkoutProduct").innerHTML = `
+                <div class="selected-product" data-original-price="${productPrice}">
+                    <img src ="${productImage}" alt="Selected Product" width="100">
+                    <h5>${productTitle}</h5>
+                    <p>Price: <span class="original-price">${productPrice}</span>€</p>
+                    <p class="new-price"></p>
+                </div>
+                `;
+
+        //Slut på detta.
+
+
+    }
+})
 
 //Tar emot produkterna i json-format och skapar upp kort med produkt-egenskaper
 function displayProducts(json) {
-    const cardContainerRow = document.querySelector('#cardContainer .row')
+    const cardContainerRow = document.querySelector('#cardContainer .row');
 
     cardContainerRow.innerHTML = '';
 
-    json.forEach(product => {
-        const productCard = `
-             <div class="card"
-             data-product-id="${product.id}">
+    //Istället för en for each gör vi en map där alla produkter skapas upp samtidigt.
+    const productCardsHTML = json.map(product =>`
+            <div class="card"
+            data-product-id="${product.id}">
                  <!-- Product image-->
                  <div class="card-container-img">
                  <img
@@ -59,41 +88,15 @@ function displayProducts(json) {
                      </div>
                  </div>
                  <!-- Product actions-->
-                 <div class="card-footer border-top-0 bg-transparent">
-                     <div class="text-center">
-                         <a class="checkoutPress btn btn-outline-dark mt-auto"
-                         >Buy now</a
-                         >
-                     </div>
-                 </div>
-             </div>
-             `;
-        cardContainerRow.innerHTML += productCard;
-        const openModal=document.querySelectorAll(".checkoutPress");
-        //actionlistener till "köp" knapparna via variabeln ovan
-        openModal.forEach(button => {
-            button.addEventListener("click", function (event) {
-                event.preventDefault();
-                modal.style.display = "block";
-
-                const productCard = this.closest(".card");
-                const productTitle = productCard.querySelector(".product-title").innerText;
-                const productImage = productCard.querySelector(".card-img-top").src;
-                const productPriceText = productCard.querySelector(".price").innerText;
-                const productPrice = parseFloat(productPriceText.replace('€', '').trim());
-
-                // Gör så produkten syns i checkout formuläret
-                document.getElementById("checkoutProduct").innerHTML = `
-                <div class="selected-product" data-original-price="${productPrice}">
-                    <img src ="${productImage}" alt="Selected Product" width="100">
-                    <h5>${productTitle}</h5>
-                    <p>Price: <span class="original-price">${productPrice}</span>€</p>
-                    <p class="new-price"></p>
+                <div class="card-footer border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a class="checkoutPress btn btn-outline-dark mt-auto">Buy now</a>
+                    </div>
                 </div>
-                `;
-            });
-        });
-    });
+            </div>
+            `;).join('');
+        //Korten läggs till samtidigt
+        cardContainerRow.innerHTML = productCardsHTML;
 }
 
 //Genererar antal kycklingar beroende på rating. Inte exakt pga heltal, avrundar.
