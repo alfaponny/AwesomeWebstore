@@ -100,12 +100,39 @@ function displayProducts(json) {
 }
 
 //Genererar antal kycklingar beroende på rating. Inte exakt pga heltal, avrundar.
-function showRatingChicks(rating){
-    const ratingNum = Math.round(rating)
+function showRatingChicks(rating) {
+    const fullChick = '<img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">';
+    const halfChick = '<img src="assets/Hatching-chick-half.png" alt="Half chick" width="20">';
+    const emptyChick = '<img src="assets/Hatching-chick-b&w.png" alt="Empty chick" width="20">';
+
+    // Rundar ner till närmsta heltal för att veta hur många hela kycklingar
+    const fullChickCount = Math.floor(rating);
+    // Räknar ut decimalen
+    const decimalPart = rating % 1;
+
+    const totalChicks = 5;
     let ratingChicks = '';
 
-    for(let i = 0; i < ratingNum; i++) {
-        ratingChicks += `<img src="assets/Hatching-chick.png" alt="Hatching chick" width="20">`;
+    // Skapar upp hela kycklingar
+    for (let i = 0; i < fullChickCount; i++) {
+        ratingChicks += fullChick;
+    }
+
+    // Skapar upp halva kycklingar
+    if (decimalPart >= 0.5) {
+        ratingChicks += halfChick;
+    }
+
+    // Räknar ut hur många tomma kycklingar som ska visas
+    let filledChickCount = fullChickCount;
+    if (decimalPart >= 0.5) {
+        filledChickCount += 1;
+    }
+    const emptyChickCount = totalChicks - filledChickCount;
+
+    // Skapar upp dom tomma kycklingarna
+    for (let i = 0; i < emptyChickCount; i++) {
+        ratingChicks += emptyChick;
     }
 
     return ratingChicks;
