@@ -340,7 +340,5 @@ function displayProductDetails(product, container) {
     </div>`;
 
     container.innerHTML = productHTML;
-
-    // Re-add checkout listeners in case they were removed
     addCheckOutListeners();
 }
