@@ -14,26 +14,27 @@ const closeModal = document.querySelector(".close");
 const orderValidation = document.getElementById("orderValidation");
 const checkoutForm = document.getElementById("checkoutForm");
 
-
 //bara error testing på hemsidan (tryck f12 och välj console)
 //console.log("Connection ESTABLISHED", modal, openModal);
 //console.log("Number of buttons found:", openModal.length);
 //Lyssnare till parent till buy now-knapp:
-document.querySelector("#cardContainer .row").addEventListener("click", function(e) {
-    if (e.target.classList.contains("checkoutPress")){
-        e.preventDefault()
-        modal.style.display="block";
 
+//Eventlyssnare till "Buy Now"-knapppar.
+function addCheckOutListeners (){
+    const openModal = document.querySelectorAll(".checkoutPress");
+    openModal.forEach(button => {
+        button.addEventListener("click", function (event){
+            event.preventDefault();
+            modal.style.display = "block";
 
-//Kan detta vara här?
-        const productCard = this.closest(".card");
-        const productTitle = productCard.querySelector(".product-title").innerText;
-        const productImage = productCard.querySelector(".card-img-top").src;
-        const productPriceText = productCard.querySelector(".price").innerText;
-        const productPrice = parseFloat(productPriceText.replace('€', '').trim());
+            // Gör så produkten syns i checkout formuläret
+            const productCard = this.closest(".card");
+            const productTitle = productCard.querySelector(".product-title").innerText;
+            const productImage = productCard.querySelector(".card-img-top").src;
+            const productPriceText = productCard.querySelector(".price").innerText;
+            const productPrice = parseFloat(productPriceText.replace('€', '').trim());
 
-        // Gör så produkten syns i checkout formuläret
-        document.getElementById("checkoutProduct").innerHTML = `
+            document.getElementById("checkoutProduct").innerHTML = `
                 <div class="selected-product" data-original-price="${productPrice}">
                     <img src ="${productImage}" alt="Selected Product" width="100">
                     <h5>${productTitle}</h5>
@@ -41,21 +42,17 @@ document.querySelector("#cardContainer .row").addEventListener("click", function
                     <p class="new-price"></p>
                 </div>
                 `;
-
-        //Slut på detta.
-
-
-    }
-})
+        })
+    })
+}
 
 //Tar emot produkterna i json-format och skapar upp kort med produkt-egenskaper
 function displayProducts(json) {
     const cardContainerRow = document.querySelector('#cardContainer .row');
 
     cardContainerRow.innerHTML = '';
-
-    //Istället för en for each gör vi en map där alla produkter skapas upp samtidigt.
-    const productCardsHTML = json.map(product =>`
+    //Map där alla produkter skapas upp samtidigt.
+    const productCardsHTML = json.map(product => `
             <div class="card"
             data-product-id="${product.id}">
                  <!-- Product image-->
@@ -73,7 +70,7 @@ function displayProducts(json) {
                          <h5 class="product-title">${product.title}</h5> 
                          <div class="d-flex justify-content-center small text-warning mb-2">
                            <div class="ratings">`
-            + showRatingChicks(product.rating.rate) +
+        + showRatingChicks(product.rating.rate) +
             `
                          </div>
                          </div>
@@ -94,9 +91,11 @@ function displayProducts(json) {
                     </div>
                 </div>
             </div>
-            `;).join('');
+            `).join('');
         //Korten läggs till samtidigt
         cardContainerRow.innerHTML = productCardsHTML;
+        //Lägger till lyssnare på buyNow
+        addCheckOutListeners()
 }
 
 //Genererar antal kycklingar beroende på rating. Inte exakt pga heltal, avrundar.
