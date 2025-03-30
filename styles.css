@@ -197,35 +197,35 @@
   margin-bottom: 5px;
 }
 html, body{
-  height: 100%; /*full height of the body*/
-  margin: 0; /*removes defualt margin*/
+  height: 100%; /*full höjd på body*/
+  margin: 0; /*tar bort default margin*/
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /*ensures the page fills the whole viewport*/
+  min-height: 100vh; /*sidan fyller hela viewport*/
 }
 
 body > *:not(footer){
-  flex-grow: 1;
+  flex-grow: 1; /* gör att footern stannar nere när sidan scrollas*/
 }
 
 .footer{
-  background-color: white !important; /* background color white*/
-  padding: 20px 0; /* adds padding at top and bottom, nothing on left and right*/
-  position: relative !important; /*puts the position to its positioned ancestor*/
-  width: 100% !important; /*spans over the width of the page*/
+  background-color: white !important;
+  padding: 20px 0; /* ger padding uppe och nere*/
+  position: relative !important; /*sätter sig i relation till närmsta positionering*/
+  width: 100% !important;
   text-align: center!important;
   margin-top: auto;
 }
 .footer img{
   width: 100%;
-  display: block; /* prevents extra space below the image*/
+  display: block !important; /* tar bort utrymme under*/
 }
 
 footer .container{
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /*centrerat footer-texten vertikalt och horisontellt*/
   text-align: center;
   color: white !important;
   padding: 10px 0;
