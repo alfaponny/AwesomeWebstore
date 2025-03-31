@@ -19,7 +19,7 @@ const checkoutForm = document.getElementById("checkoutForm");
 //console.log("Number of buttons found:", openModal.length);
 //Lyssnare till parent till buy now-knapp:
 
-//Eventlyssnare till "Buy Now"-knapppar.
+//Eventlyssnare till "Buy Now"-knappar.
 function addCheckOutListeners (){
     const openModal = document.querySelectorAll(".checkoutPress");
     openModal.forEach(button => {
@@ -27,12 +27,22 @@ function addCheckOutListeners (){
             event.preventDefault();
             modal.style.display = "block";
 
-            // Gör så produkten syns i checkout formuläret
-            const productCard = this.closest(".card");
-            const productTitle = productCard.querySelector(".product-title").innerText;
-            const productImage = productCard.querySelector(".card-img-top").src;
-            const productPriceText = productCard.querySelector(".price").innerText;
-            const productPrice = parseFloat(productPriceText.replace('€', '').trim());
+            let productCard = this.closest(".card");
+            let productTitle, productImage, productPrice;
+
+            // Om den inte hittar productcard vilket den inte gör när man är på productpage
+            // så hämtar den data från product details istället
+            if (!productCard) {
+                productCard = document.getElementById('productDetails');
+                productTitle = document.querySelector('.display-5.fw-bolder').innerText;
+                productImage = document.querySelector('#productDetails img').src;
+                productPrice = parseFloat(document.querySelector('.fs-5 span').innerText);
+            } else {
+                // Här är om den hittar product card så hämtar den data därifrån
+                productTitle = productCard.querySelector(".product-title").innerText;
+                productImage = productCard.querySelector(".card-img-top").src;
+                productPrice = parseFloat(productCard.querySelector(".price").innerText.replace('€', '').trim());
+            }
 
             document.getElementById("checkoutProduct").innerHTML = `
                 <div class="selected-product" data-original-price="${productPrice}">
@@ -57,17 +67,21 @@ function displayProducts(json) {
             data-product-id="${product.id}">
                  <!-- Product image-->
                  <div class="card-container-img">
-                 <img
+                 <a href="productPage.html?id=${product.id}">
+                    <img
                      class="card-img-top"
                      src="${product.image}"
                      alt="product picture"
-                 />
+                    />
+                 </a>
                  </div>
                  <!-- Product details-->
                  <div class="card-body">
                      <div class="text-center">
                          <!-- Product name-->
-                         <h5 class="product-title">${product.title}</h5> 
+                         <a href="productPage.html?id=${product.id}">
+                            <h5 class="product-title">${product.title}</h5> 
+                         </a>
                          <div class="d-flex justify-content-center small text-warning mb-2">
                            <div class="ratings">`
         + showRatingChicks(product.rating.rate) +
@@ -292,3 +306,39 @@ document.getElementById("applyDiscount").addEventListener("click", function() {
         discountError.style.display = "block";
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    const productDetailsContainer = document.getElementById('productDetails');
+
+    if (productId && productDetailsContainer) {
+        fetch(`https://fakestoreapi.com/products/${productId}`)
+            .then(res => res.json())
+            .then(product => displayProductDetails(product, productDetailsContainer))
+            .catch(err => console.error(err));
+    }
+});
+
+function displayProductDetails(product, container) {
+    const productHTML = `
+    <div class="col-md-6">
+        <img class="img-fluid" src="${product.image}" alt="${product.title}"/>
+    </div>
+    <div class="col-md-6">
+        <h1 class="display-5 fw-bolder product-title">${product.title}</h1>
+        <div class="fs-5 mb-5">
+            <span>${product.price.toFixed(2)}€</span>
+            <div class="d-flex justify-content-start small text-warning mt-2">
+                ${showRatingChicks(product.rating.rate)}
+            </div>
+        </div>
+        <p class="lead">${product.description}</p>
+        <div class="d-flex">
+            <a class="checkoutPress btn btn-outline-dark mt-auto" id="buyNowButton">Buy now</a>
+        </div>
+    </div>`;
+
+    container.innerHTML = productHTML;
+    addCheckOutListeners();
+}
