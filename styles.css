@@ -138,10 +138,20 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   margin-bottom: 10px;
   word-wrap: break-word;
+}
+
+#productDetails h1.display-5 {
+  overflow: visible;
+  text-overflow: clip;
+  display: block;
+  min-height: auto;
+  word-wrap: break-word;
+  white-space: normal;
+  font-size: 35px;
 }
 
 .card-footer {
@@ -239,8 +249,6 @@ footer .container{
   padding: 10px 0;
   background: none;
 }
-
-
 
 a {
   text-decoration: none;
