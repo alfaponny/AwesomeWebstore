@@ -219,12 +219,9 @@ body > *:not(footer){
 }
 
 .footer{
-  /* background-color: white !important; */
- /* padding: 20px 0; /* ger padding uppe och nere*/
+
 position: relative !important; /*sätter sig i relation till närmsta positionering*/
   width: 100% !important;
-  /* text-align: center!important; */
-  /*margin-top: auto;*/
   line-height: 0; /*tar bort extra utrymme under footern*/
   margin: 0;
   padding: 0;
@@ -254,3 +251,57 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+/*färgskala*/
+:root {
+  --lightgrey-bg: #d3d3d3;           /* bakgrund */
+  --accent-gold: #F1D789;       /* knappfärg */
+  --accent-gold-hover: #FFE6A7; /* hover-state på knapp*/
+  --deep-purple: #6B5B95;       /* text och mörkare detaljer */
+  --dark-text: #2A2438;         /* huvud-textfärgen */
+  --white: #FFFFFF;
+}
+/* Import av Montserrat, Open Sans och Raleway-font*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&family=Raleway:wght@300;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: var(--dark-text);
+  line-height: 1.6;
+}
+.navbar{
+  background-color: var(--deep-purple) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand, .nav-link{
+  color: var(--white) !important;
+  font-family: 'Raleway', sans-serif;
+  font-wight: 700;
+}
+
+/*Bakgrundsfärgen*/
+.py-5 {
+  background-color: var(--lightgrey-bg);
+}
+
+
+/*Buy & Lets shop-knapp*/
+.shopPress.btn, .checkoutPress.btn{
+  background-color: var(--accent-gold) !important;
+  color: var(--deep-purple) !important;
+  border: none !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+}
+.shopPress.btn:hover, .checkoutPress.btn:hover{
+  background-color: var(--accent-gold-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
