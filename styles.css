@@ -281,11 +281,6 @@ body {
   font-wight: 700;
 }
 
-/*Bakgrundsfärgen*/
-.py-5 {
-  background-color: var(--lightgrey-bg);
-}
-
 
 /*Buy & Lets shop-knapp*/
 .shopPress.btn, .checkoutPress.btn{
