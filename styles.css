@@ -285,7 +285,7 @@ body {
 
 card{
   border: 1px solid #f0e6ff;
-  box-shadow: 0 4px 15 px rgba(196, 181, 232, 0.15);
+  box-shadow: 0 4px 15px rgba(196, 181, 232, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 

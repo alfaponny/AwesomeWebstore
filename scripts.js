@@ -8,16 +8,9 @@
 
 //variabler hämtade från index
 const modal=document.getElementById("checkout");
-
 const closeModal = document.querySelector(".close");
-//const submitOrder=document.getElementById("orderDone");
 const orderValidation = document.getElementById("orderValidation");
 const checkoutForm = document.getElementById("checkoutForm");
-
-//bara error testing på hemsidan (tryck f12 och välj console)
-//console.log("Connection ESTABLISHED", modal, openModal);
-//console.log("Number of buttons found:", openModal.length);
-//Lyssnare till parent till buy now-knapp:
 
 //Eventlyssnare till "Buy Now"-knappar.
 function addCheckOutListeners (){
@@ -268,14 +261,6 @@ checkoutForm.addEventListener("submit", (e) => {
     }, 1500);   //Millisekunder validation visas i innan fade-out börjar
 })
 
-//Hämtar produkter när hemsidan öppnas
-document.addEventListener("DOMContentLoaded", function () {
-    fetch('https://fakestoreapi.com/products')
-        .then(res => res.json())
-        .then(json => displayProducts(json))
-        .catch(err => console.error(err))
-});
-
 // Gör så rabattkoden funkar
 document.getElementById("applyDiscount").addEventListener("click", function() {
     // hämtar rabattkoden man skriver in och priset på produkten
@@ -307,10 +292,18 @@ document.getElementById("applyDiscount").addEventListener("click", function() {
     }
 });
 
+//Hämtar produkter när hemsidan öppnas
+//Hämtar produktsida när produkt väljs
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
     const productDetailsContainer = document.getElementById('productDetails');
+
+     fetch('https://fakestoreapi.com/products')
+        .then(res => res.json())
+        .then(json => displayProducts(json))
+        .catch(err => console.error(err))
+
 
     if (productId && productDetailsContainer) {
         fetch(`https://fakestoreapi.com/products/${productId}`)
