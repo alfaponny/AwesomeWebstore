@@ -53,6 +53,8 @@ function addCheckOutListeners (){
 function displayProducts(json) {
     const cardContainerRow = document.querySelector('#cardContainer .row');
 
+    cardContainerRow.innerHTML = '';
+
     //Map där alla produkter skapas upp samtidigt.
     const productCardsHTML = json.map(product => `
             <div class="card"
