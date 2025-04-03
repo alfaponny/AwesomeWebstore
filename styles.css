@@ -111,7 +111,7 @@
   flex-direction: column;
   margin: 0.5rem;
   border: 1px solid #f0e6ff;
-  box-shadow: 0 4px 15px rgba(196, 181, 232, 0.15); /* Fixed from '15 px' to '15px' */
+  box-shadow: 0 4px 15px rgba(196, 181, 232, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -224,7 +224,6 @@ body > *:not(footer){
 }
 
 .footer{
-
 position: relative !important; /*sätter sig i relation till närmsta positionering*/
   width: 100% !important;
   line-height: 0; /*tar bort extra utrymme under footern*/
@@ -290,7 +289,7 @@ body {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(196, 181, 232, 0.25); /* Fixed from 'bx-shadow' and '20 px' */
+  box-shadow: 0 8px 20px rgba(196, 181, 232, 0.25);
 }
 
 .card-title {
@@ -326,6 +325,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
+  border: none !important;
 }
 
 #eggCounter:hover {
