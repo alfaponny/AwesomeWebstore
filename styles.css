@@ -13,6 +13,7 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+/* skapar ett dolt pop-up fönster centrerat på sidan med halvtransparent bakgrund */
 .modal {
   display: none;
   position: fixed;
@@ -22,6 +23,7 @@
   height: 100%;
   background: rgba(0, 0, 50, 0.5);
 }
+/*själva innehållet i popupen*/
 .modal-content {
   background: white;
   padding: 20px;
@@ -38,7 +40,7 @@
   text-align: center;
   margin-bottom: 30px;
 }
-
+/*för att kunna stänga pop-rutan*/
 .close {
   position: absolute;
   top: 10px;
@@ -46,13 +48,13 @@
   font-size: 20px;
   cursor: pointer;
 }
-
+/*använder display: contents vilket gör att elementet inte renderar någon egen box.*/
 .checkoutForm {
   display: contents;
   flex-direction: column;
   gap: 5px;
 }
-
+/*en klass för bilder av ägg som är nästan osynliga till man hovrar över dem*/
 .hidden-egg {
   width: 40px;
   height: 40px;
@@ -66,7 +68,7 @@
 #egg1:hover, #egg2:hover, #egg3:hover, #egg4:hover, #egg5:hover, #egg6:hover {
   opacity: 1;
 }
-
+/*äggens position*/
 #egg1 { top: 200%; left: 5vw; }
 #egg2 { top: 120%; right: 10vw; }
 #egg3 { bottom: 1%; left: 10vw; }
@@ -74,7 +76,7 @@
 #egg5 { top: 1%; right: 15vw; }
 #egg6 { top: 80%; left: 50vw; }
 
-
+/*ändrar placeringar för mobilskärmar*/
 @media (max-width: 768px) {
   #egg1 { top: 150%; left: 5vw; }
   #egg2 { top: 55%; right: 10vw; }
@@ -83,7 +85,7 @@
   #egg5 { top: 30%; right: 40vw; }
   #egg6 { top: 265%; left: 65vw; }
 }
-
+/*rutan som visar hur många ägg användaren har hittat*/
 #eggCounter {
   position: fixed;
   bottom: 10px;
@@ -92,7 +94,7 @@
   padding: 10px;
   border: 1px solid black;
 }
-
+/*stilen för knappen "Order Done" när användaren gör en beställning*/
 #orderDone {
   margin: 20px;
   border-radius:5px;
@@ -104,7 +106,7 @@
 
 #orderDone:hover
 {background-color: #72d386}
-
+/*produktkort med skugga och lyft-effekt när man hovrar*/
 .card {
   height: 28rem;
   display: flex;
@@ -114,7 +116,7 @@
   box-shadow: 0 4px 15px rgba(196, 181, 232, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+/* hanterar layouten för bild*/
 .card-img-top {
   object-fit: contain;
   height: 170px;
@@ -128,7 +130,7 @@
   justify-content: center;
   padding: 5px;
 }
-
+/* hanterar layouten för beskrivning*/
 .card-body {
   height: 150px;
   width: 100%;
@@ -143,12 +145,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; /* begränsar antal rader text*/
   -webkit-box-orient: vertical;
   margin-bottom: 10px;
   word-wrap: break-word;
 }
-
+/* stil för stor rubrik i produktdetaljvyn*/
 #productDetails h1.display-5 {
   overflow: visible;
   text-overflow: clip;
@@ -158,7 +160,7 @@
   white-space: normal;
   font-size: 35px;
 }
-
+/* visuell kod för sidfot för kort*/
 .card-footer {
   padding: 0 1rem 1rem;
 }
@@ -216,7 +218,7 @@ html, body{
   padding: 0;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /*flex-layout för att trycka ner sideinnehåll om det är för kort*/
 }
 
 body > *:not(footer){
@@ -256,7 +258,7 @@ a {
   color: inherit;
 }
 
-/*färgskala*/
+/*färgskala för en färgpalett*/
 :root {
   --lightgrey-bg: #d3d3d3;           /* bakgrund */
   --accent-gold: #F1D789;       /* knappfärg */
@@ -275,7 +277,7 @@ body {
   line-height: 1.6;
 
 }
-
+/*stilar för navigationsfält*/
 .navbar {
   background-color: var(--deep-purple) !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -298,7 +300,7 @@ body {
   color: var(--deep-purple);
 }
 
-/*Buy & Lets shop-knapp*/
+/*Buy & Lets shop-knapp, hover-effekter som förändrar färg och lägger till skugga*/
 .shopPress.btn, .checkoutPress.btn {
   background-color: var(--accent-gold) !important;
   color: var(--deep-purple) !important;
