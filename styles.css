@@ -174,7 +174,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 3; /* begränsar antal rader text*/
   -webkit-box-orient: vertical;
   margin-bottom: 5px;
 }
@@ -222,7 +222,7 @@ html, body{
 }
 
 body > *:not(footer){
-  flex: 1; /* gör att footern stannar nere när sidan scrollas*/
+  flex: 1; /* gör att footern stannar nere när sidan scrollas, allt som inte är footer sträcks ut*/
 }
 
 .footer{
@@ -232,7 +232,6 @@ body > *:not(footer){
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #b19cd9; /*lavender backup*/
 }
 .footer-image{
   width: 100%;
@@ -260,7 +259,7 @@ a {
 
 /*färgskala för en färgpalett*/
 :root {
-  --lightgrey-bg: #d3d3d3;           /* bakgrund */
+
   --accent-gold: #F1D789;       /* knappfärg */
   --accent-gold-hover: #FFE6A7; /* hover-state på knapp*/
   --deep-purple: #6B5B95;       /* text och mörkare detaljer */
