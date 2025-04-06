@@ -141,24 +141,24 @@
 }
 
 .product-title {
-  min-height: 2.8rem;
-  overflow: hidden;
+  min-height: 2.8rem; /*sätter en min-höjd för produkttiteln*/
+  overflow: hidden; /*om texten blir för lång göms den*/
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* begränsar antal rader text*/
-  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* begränsar antal rader text till 2 rader*/
+  -webkit-box-orient: vertical; /*teten ska ordnas vertikalt*/
   margin-bottom: 10px;
-  word-wrap: break-word;
+  word-wrap: break-word; /* text som inte kan kortas ner eller långa ord bryts ner för att passa containern*/
 }
 /* stil för stor rubrik i produktdetaljvyn*/
 #productDetails h1.display-5 {
-  overflow: visible;
-  text-overflow: clip;
-  display: block;
-  min-height: auto;
-  word-wrap: break-word;
-  white-space: normal;
-  font-size: 35px;
+  overflow: visible; /*tillåter text att vara synligt i sin helhet*/
+  text-overflow: clip; /* om texten är för lång blir den endast avhuggen utan ellipsis*/
+  display: block; /*tar upp hela storleken på containern och lägger element under den*/
+  min-height: auto; /*höjden justeras baserat på vad som finns inuti*/
+  word-wrap: break-word; /* om ett ord är för långt så bryts det*/
+  white-space: normal; /*låter texten flöda över fera rader*/
+  font-size: 35px; /*lite större text för h1-elementet*/
 }
 /* visuell kod för sidfot för kort*/
 .card-footer {
