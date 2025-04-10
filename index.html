@@ -44,35 +44,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-
-      <!--   KOMMENTERAT UT SHOP
-        <li class="nav-item dropdown">
-            <a
-                    class="nav-link dropdown-toggle"
-                    id="navbarDropdown"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-          >Shop</a
-            >
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#!">All Products</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-              <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-            </ul>
-          </li>
-        </ul> -->
-      <!-- HÄR ÄR CART
-      <form class="d-flex">
-        <button class="btn btn-outline-dark" type="submit">
-          <i class="bi-cart-fill me-1"></i>
-          Cart
-          <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-        </button>
-      </form>-->
-
     </div>
   </div>
 </nav>
@@ -285,9 +256,7 @@
           <!-- Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
-              <a class="checkoutPress btn btn-outline-dark mt-auto"
-              >Buy now</a
-              >
+              <a href="#" class="checkoutPress btn btn-outline-dark mt-auto">Add to cart</a>
             </div>
           </div>
         </div>
@@ -318,9 +287,7 @@
           <!-- Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
-              <a class="checkoutPress btn btn-outline-dark mt-auto"
-              >Buy now</a
-              >
+              <a href="#" class="checkoutPress btn btn-outline-dark mt-auto">Add to cart</a>
             </div>
           </div>
         </div>
@@ -365,15 +332,14 @@
           <!-- Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
-              <a class="checkoutPress btn btn-outline-dark mt-auto"
-              >Buy now</a
-              >
+              <a href="#" class="checkoutPress btn btn-outline-dark mt-auto">Add to cart</a>
             </div>
           </div>
         </div>
       </div>
       <div class="col mb-5">
         <div class="card h-100">
+
           <!-- Product image-->
           <img
                   class="card-img-top"
@@ -402,11 +368,13 @@
           <!-- Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
-              <a class="checkoutPress btn btn-outline-dark mt-auto" href="#"
-              >Buy now</a
-              >
+              <a href="#" class="checkoutPress btn btn-outline-dark mt-auto">Add to cart</a>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="col mb-5">
+        <div class="card h-100">
         </div>
       </div>
     </div>
@@ -458,6 +426,13 @@
     <form id= "checkoutForm" class="checkoutForm">
 
       <div id="checkoutProduct"></div>
+
+      <button id="add-single-item"> + </button>
+      <button id="remove-single-item"> - </button>
+      <button id="remove-all-items"> remove </button>
+
+      <h1>Local Storage</h1>
+      <div id="ls-currently"></div>
 
       <label for="fullName">Full name</label>
       <input type="text" id="fullName" required autocomplete="name" placeholder="Ash Ketchum">

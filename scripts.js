@@ -19,7 +19,7 @@ const checkoutForm = document.getElementById("checkoutForm");
 //console.log("Number of buttons found:", openModal.length);
 //Lyssnare till parent till buy now-knapp:
 
-//Eventlyssnare till "Buy Now"-knappar.
+//Eventlyssnare till "Buy Now"-knappar. Behöver modifieras, till att typ kunna lägga till antal varor?
 function addCheckOutListeners (){
     const openModal = document.querySelectorAll(".checkoutPress");
     openModal.forEach(button => {
@@ -101,7 +101,7 @@ function displayProducts(json) {
                  <!-- Product actions-->
                 <div class="card-footer border-top-0 bg-transparent">
                     <div class="text-center">
-                        <a class="checkoutPress btn btn-outline-dark mt-auto">Buy now</a>
+                       <a href="#" class="checkoutPress btn btn-outline-dark mt-auto">Add to cart</a>
                     </div>
                 </div>
             </div>
@@ -162,6 +162,25 @@ window.addEventListener("click", function(event) {
         modal.style.display = "none";
     }
 });
+
+document.getElementById("add-single-item").addEventListener("click", function() {
+    // Add functionality here
+});
+
+document.getElementById("remove-single-item").addEventListener("click", function() {
+    // Add functionality here
+});
+
+document.getElementById("remove-all-items").addEventListener("click", function() {
+    // Add functionality here
+});
+
+function updateUI(){
+    var values = [], keys = Object.keys(localStorage), i = keys.length;
+    while(i--){values.push(localStorage.getItem(keys[i]) ); }
+    document.getElementsbyId('ls-currently').textContent = values;
+}
+
 
 //actionlistener till fullName
 document.getElementById("fullName").addEventListener("input", function() {
